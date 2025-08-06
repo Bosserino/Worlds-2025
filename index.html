@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Worlds 2025 - Watch Party & Poolfest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+            to { text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.6); }
+        }
+
+        .hero-details {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #feca57;
+        }
+
+        .schedule {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .day {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid;
+        }
+
+        .day.friday { border-left-color: #ff6b6b; }
+        .day.saturday { border-left-color: #feca57; }
+        .day.sunday { border-left-color: #96ceb4; }
+
+        .day h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .timeline li {
+            margin: 0.8rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline li:last-child {
+            border-bottom: none;
+        }
+
+        .prizes {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .prizes h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .prize-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .prize-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 0.2em;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .pokeball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b 50%, #fff 50%);
+            animation: float-random 10s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float-random {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="emoji">🏆</span> Pokémon Worlds 2025</h1>
+            <h2>Watch Party & Poolfest</h2>
+            <div class="hero-details">
+                <p><span class="emoji">📍</span> <strong>Italia</strong> – 15, 16, 17 agosto 2025</p>
+                <p><span class="emoji">🎮</span> Tornei, mondiali in streaming, piscina, retro gaming e premi!</p>
+                <p><span class="emoji">🛏️</span> 10 posti letto disponibili</p>
+            </div>
+            <a href="#programma" class="cta-button">Scopri il Programma</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2><span class="emoji">🔥</span> COSA TI ASPETTA</h2>
+        <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
+            <p style="font-size: 1.1rem; line-height: 1.6;">
+                Tre giorni per vivere i Mondiali Pokémon 2025 insieme, tra:<br><br>
+                • Streaming serale in diretta da Anaheim<br>
+                • Tornei locali di VGC Reg H e Yu-Gi-Oh! GOAT<br>
+                • Piscina sempre aperta, shiny hunting e giochi retro<br>
+                • Pasti condivisi e nottate di gioco fino all'alba<br>
+                • Premi: pacchetti dell'espansione Pokémon Black Bolt e White Flare
+            </p>
+        </div>
+    </section></section>
+
+    <section class="section">
+        <h2><span class="emoji">🌐</span> FUSO ORARIO</h2>
+        <div class="highlight-card" style="max-width: 600px; margin: 0 auto;">
+            <p>Anaheim (UTC-7) → Italia (UTC+2): +9 ore<br>
+            <span class="emoji">📺</span> Lo streaming ufficiale inizia ogni giorno alle 18:00 italiane, e prosegue fino a notte fonda (~5:00)</p>
+        </div>
+    </section>
+
+    <section class="section" id="programma">
+        <h2><span class="emoji">📅</span> PROGRAMMA GIORNO PER GIORNO</h2>
+        <div class="schedule">
+            <div class="day friday">
+                <h3><span class="emoji">🔴</span> Venerdì 15 Agosto – Welcome & Streaming Day 1</h3>
+                <ul class="timeline">
+                    <li><strong>🕢 19:30</strong> – Apertura casa, tuffi in piscina, sistemazione</li>
+                    <li><strong>🍽️ 20:30</strong> – Cena informale con avanzi / cibo portato dagli ospiti</li>
+                    <li><strong>📺</strong> Streaming Day 1 già in corso (inizia alle 18:00)</li>
+                    <li><strong>🎮</strong> Giochi liberi: retro console, shiny hunting, chiacchiere</li>
+                    <li><strong>🛏️</strong> Assegnazione posti letto</li>
+                    <li><strong>🌙</strong> Nottata libera fino all'alba</li>
+                </ul>
+            </div>
+
+            <div class="day saturday">
+                <h3><span class="emoji">🟡</span> Sabato 16 Agosto – Tornei + BBQ + Streaming Day 2</h3>
+                <ul class="timeline">
+                    <li><strong>🌞 12:00</strong> – Risveglio lento, colazione e piscina</li>
+                    <li><strong>🎮 13:00</strong> – Torneo VGC Reg H (Swiss Day 1)<br><strong>🏅 Premi:</strong> Pacchetti Pokémon Black Bolt e White Flare!</li>
+                    <li><strong>🃏 15:30</strong> – Torneo Yu-Gi-Oh! formato GOAT<br><strong>🏅 Premi Pokémon</strong> anche per il GOAT: pacchetti espansione per i primi classificati!</li>
+                    <li><strong>🍽️ 17:30</strong> – Merenda / pausa pranzo condivisa</li>
+                    <li><strong>📺 18:00</strong> – Streaming Worlds Day 2 (watch party)</li>
+                    <li><strong>🍖 Dalle 19:00</strong> – BBQ serale in giardino a bordo piscina</li>
+                    <li><strong>🎮</strong> Giochi liberi, shiny hunting, relax</li>
+                    <li><strong>🌙</strong> Nottata lunga fino alle 5:00</li>
+                </ul>
+            </div>
+
+            <div class="day sunday">
+                <h3><span class="emoji">🟢</span> Domenica 17 Agosto – Finali VGC + Finali Worlds</h3>
+                <ul class="timeline">
+                    <li><strong>🌞 12:00</strong> – Colazione e relax in piscina</li>
+                    <li><strong>🎮 13:30</strong> – Torneo VGC Reg H – Day 2 & Top Cut<br><strong>🏆 In palio:</strong> pacchetti Black Bolt e White Flare</li>
+                    <li><strong>🍱 14:30</strong> – Pranzo condiviso (sushi delivery o cucinato insieme)</li>
+                    <li><strong>📺 18:00</strong> – Streaming delle Finali Mondiali Pokémon 2025</li>
+                    <li><strong>🍕 21:00</strong> – Cena: pizza delivery o cibo avanzato</li>
+                    <li><strong>🎮</strong> Giochi liberi, ultimi tuffi e relax</li>
+                    <li><strong>🌙</strong> Ultima notte insieme</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="prizes">
+            <h3><span class="emoji">🎁</span> PREMI IN PALIO</h3>
+            <p><strong>🏆 I tornei VGC Reg H e Yu-Gi-Oh! GOAT assegneranno:</strong></p>
+            
+            <div class="prize-grid">
+                <div class="prize-item">
+                    <h4>• Pacchetti Pokémon Black Bolt e White Flare</h4>
+                    <p><strong>Primo posto:</strong> 3 pacchetti<br>
+                    <strong>Secondo posto:</strong> 2 pacchetti<br>
+                    <strong>Terzo posto:</strong> 1 pacchetto</p>
+                </div>
+                <div class="prize-item">
+                    <h4><span class="emoji">✨</span> Bonus</h4>
+                    <p>• Riconoscimenti anche per vincitori shiny hunting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2><span class="emoji">🧳</span> COSA PORTARE</h2>
+        <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                • Costume e asciugamano<br>
+                • Console (Switch, 3DS, ecc.) per shiny hunting e tornei VGC<br>
+                • Mazzo Yu-Gi-Oh! formato GOAT<br>
+                • Controller per retro console (opzionale)<br>
+                • Consigliato Materassino / sacco a pelo se resti a dormire<br>
+                • Spirito chill ma non troppo
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="highlight-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <h2><span class="emoji">📋</span> ISCRIZIONE</h2>
+            <p style="font-size: 1.1rem; margin: 1.5rem 0;">A breve riceverai un modulo Google per indicare:</p>
+            <ul style="text-align: left; max-width: 400px; margin: 0 auto; line-height: 1.6;">
+                <li>I giorni in cui sarai presente</li>
+                <li>A quali tornei ti iscrivi</li>
+                <li>Se ti fermi a dormire</li>
+                <li>Eventuali esigenze alimentari</li>
+            </ul>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScofoXOCMitJHLGADcVLmhyz5K9mC5G5lyITQ3otXP0ZydX-w/viewform?usp=header" target="_blank" class="cta-button" style="margin-top: 2rem;">Compila il Modulo</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p><span class="emoji">⚡</span> <strong>Pokémon Worlds 2025 Watch Party & Poolfest</strong> <span class="emoji">⚡</span></p>
+        <p>15-17 Agosto 2025 | Italia | Un weekend indimenticabile tra amici trainer!</p>
+    </footer>
+
+    <script>
+        // Crea elementi fluttuanti animati
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+            
+            for (let i = 0; i < 15; i++) {
+                const pokeball = document.createElement('div');
+                pokeball.className = 'pokeball';
+                pokeball.style.left = Math.random() * 100 + '%';
+                pokeball.style.animationDelay = Math.random() * 10 + 's';
+                pokeball.style.animationDuration = (8 + Math.random() * 4) + 's';
+                pokeball.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]} 50%, #fff 50%)`;
+                container.appendChild(pokeball);
+            }
+        }
+
+        // Smooth scrolling per i link
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Effetto parallax leggero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Inizializza animazioni
+        window.addEventListener('load', () => {
+            createFloatingElements();
+        });
+
+        // Animazione di entrata per le card
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Osserva tutti gli elementi che devono animarsi
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.highlight-card, .day, .prizes');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
