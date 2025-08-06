@@ -13,10 +13,9 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #3b3f6f; /* Sfondo scuro per un effetto più pulito */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             overflow-x: hidden;
-            font-size: 16px; /* Dimensione di base per il testo */
         }
 
         .hero {
@@ -25,11 +24,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
+            position: sticky;
+            top: 0;
             background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
             background-size: 400% 400%;
-            background-attachment: fixed;
             animation: gradientShift 8s ease infinite;
+            z-index: 1; /* Assicura che l'header sia al di sopra dei contenuti */
         }
 
         @keyframes gradientShift {
@@ -92,13 +92,23 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
+        .content-wrapper {
+            position: relative;
+            z-index: 2; /* Assicura che il contenuto scorra sopra l'header */
+            background-color: #3b3f6f; /* Sfondo scuro per evitare trasparenze */
+        }
+        
         .section {
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            background-color: #3b3f6f;
+        }
+
+        .section h2, .section h3 {
+            white-space: nowrap; /* Forza il testo su una singola riga */
+            overflow: hidden; /* Nasconde il testo che esce */
+            text-overflow: ellipsis; /* Aggiunge i puntini di sospensione */
+            font-weight: normal;
         }
 
         .section h2 {
@@ -106,7 +116,6 @@
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
-            font-weight: normal;
         }
 
         .section h2::after {
@@ -130,6 +139,7 @@
 
         .highlight-card {
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -170,7 +180,6 @@
         .day h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            font-weight: normal;
         }
 
         .timeline {
@@ -200,7 +209,6 @@
         .prizes h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            font-weight: normal;
         }
 
         .prize-grid {
@@ -214,6 +222,7 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 1.5rem;
             border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
 
         .footer {
@@ -229,51 +238,20 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                font-size: 14px;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero-details {
-                font-size: 1rem;
-                line-height: 1.5;
-            }
-
             .section {
                 padding: 3rem 1rem;
-            }
-
-            .section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-            }
-
-            .highlight-card h3 {
-                font-size: 1.3rem;
-            }
-
-            .day h3 {
-                font-size: 1.5rem;
-            }
-
-            .timeline li {
-                font-size: 0.9rem;
-            }
-
-            .prizes h3 {
-                font-size: 1.6rem;
             }
             
             .highlights {
                 grid-template-columns: 1fr;
             }
 
-            .cta-button {
-                font-size: 1rem;
-                padding: 12px 30px;
+            .section h2 {
+                font-size: 1.8rem;
             }
         }
 
@@ -323,119 +301,121 @@
         </div>
     </section>
 
-    <section class="section">
-        <h2><span class="emoji">🔥</span> COSA TI ASPETTA</h2>
-        <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
-            <p style="font-size: 1.1rem; line-height: 1.6;">
-                Tre giorni per vivere i Mondiali Pokémon 2025 insieme, tra:<br><br>
-                • Streaming serale in diretta da Anaheim<br>
-                • Tornei locali di VGC Reg H e Yu-Gi-Oh! GOAT<br>
-                • Piscina sempre aperta, shiny hunting e giochi retro<br>
-                • Pasti condivisi e nottate di gioco fino all'alba<br>
-                • Premi: pacchetti dell'espansione Pokémon Black Bolt e White Flare
-            </p>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2><span class="emoji">🌐</span> FUSO ORARIO</h2>
-        <div class="highlight-card" style="max-width: 600px; margin: 0 auto;">
-            <p>Anaheim (UTC-7) → Italia (UTC+2): +9 ore<br>
-            <span class="emoji">📺</span> Lo streaming ufficiale inizia ogni giorno alle 18:00 italiane, e prosegue fino a notte fonda (~5:00)</p>
-        </div>
-    </section>
-
-    <section class="section" id="programma">
-        <h2><span class="emoji">📅</span> PROGRAMMA GIORNO PER GIORNO</h2>
-        <div class="schedule">
-            <div class="day friday">
-                <h3><span class="emoji">🔴</span> Venerdì 15 Agosto – Welcome & Streaming Day 1</h3>
-                <ul class="timeline">
-                    <li><strong>🕢 19:30</strong> – Apertura casa, tuffi in piscina, sistemazione</li>
-                    <li><strong>🍽️ 20:30</strong> – Cena informale con avanzi / cibo portato dagli ospiti</li>
-                    <li><strong>📺</strong> Streaming Day 1 già in corso (inizia alle 18:00)</li>
-                    <li><strong>🎮</strong> Giochi liberi: retro console, shiny hunting, chiacchiere</li>
-                    <li><strong>🛏️</strong> Assegnazione posti letto</li>
-                    <li><strong>🌙</strong> Nottata libera fino all'alba</li>
-                </ul>
+    <div class="content-wrapper">
+        <section class="section">
+            <h2><span class="emoji">🔥</span> COSA TI ASPETTA</h2>
+            <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <p style="font-size: 1.1rem; line-height: 1.6;">
+                    Tre giorni per vivere i Mondiali Pokémon 2025 insieme, tra:<br><br>
+                    • Streaming serale in diretta da Anaheim<br>
+                    • Tornei locali di VGC Reg H e Yu-Gi-Oh! GOAT<br>
+                    • Piscina sempre aperta, shiny hunting e giochi retro<br>
+                    • Pasti condivisi e nottate di gioco fino all'alba<br>
+                    • Premi: pacchetti dell'espansione Pokémon Black Bolt e White Flare
+                </p>
             </div>
+        </section>
 
-            <div class="day saturday">
-                <h3><span class="emoji">🟡</span> Sabato 16 Agosto – Tornei + BBQ + Streaming Day 2</h3>
-                <ul class="timeline">
-                    <li><strong>🌞 12:00</strong> – Risveglio lento, colazione e piscina</li>
-                    <li><strong>🎮 13:00</strong> – Torneo VGC Reg H (Swiss Day 1)<br><strong>🏅 Premi:</strong> Pacchetti Pokémon Black Bolt e White Flare!</li>
-                    <li><strong>🃏 15:30</strong> – Torneo Yu-Gi-Oh! formato GOAT<br><strong>🏅 Premi Pokémon</strong> anche per il GOAT: pacchetti espansione per i primi classificati!</li>
-                    <li><strong>🍽️ 17:30</strong> – Merenda / pausa pranzo condivisa</li>
-                    <li><strong>📺 18:00</strong> – Streaming Worlds Day 2 (watch party)</li>
-                    <li><strong>🍖 Dalle 19:00</strong> – BBQ serale in giardino a bordo piscina</li>
-                    <li><strong>🎮</strong> Giochi liberi, shiny hunting, relax</li>
-                    <li><strong>🌙</strong> Nottata lunga fino alle 5:00</li>
-                </ul>
+        <section class="section">
+            <h2><span class="emoji">🌐</span> FUSO ORARIO</h2>
+            <div class="highlight-card" style="max-width: 600px; margin: 0 auto;">
+                <p>Anaheim (UTC-7) → Italia (UTC+2): +9 ore<br>
+                <span class="emoji">📺</span> Lo streaming ufficiale inizia ogni giorno alle 18:00 italiane, e prosegue fino a notte fonda (~5:00)</p>
             </div>
+        </section>
 
-            <div class="day sunday">
-                <h3><span class="emoji">🟢</span> Domenica 17 Agosto – Finali VGC + Finali Worlds</h3>
-                <ul class="timeline">
-                    <li><strong>🌞 12:00</strong> – Colazione e relax in piscina</li>
-                    <li><strong>🎮 13:30</strong> – Torneo VGC Reg H – Day 2 & Top Cut<br><strong>🏆 In palio:</strong> pacchetti Black Bolt e White Flare</li>
-                    <li><strong>🍱 14:30</strong> – Pranzo condiviso (sushi delivery o cucinato insieme)</li>
-                    <li><strong>📺 18:00</strong> – Streaming delle Finali Mondiali Pokémon 2025</li>
-                    <li><strong>🍕 21:00</strong> – Cena: pizza delivery o cibo avanzato</li>
-                    <li><strong>🎮</strong> Giochi liberi, ultimi tuffi e relax</li>
-                    <li><strong>🌙</strong> Ultima notte insieme</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="prizes">
-            <h3><span class="emoji">🎁</span> PREMI IN PALIO</h3>
-            <p><strong>🏆 I tornei VGC Reg H e Yu-Gi-Oh! GOAT assegneranno:</strong></p>
-            
-            <div class="prize-grid">
-                <div class="prize-item">
-                    <h4>• Pacchetti Pokémon Black Bolt e White Flare</h4>
-                    <p><strong>Primo posto:</strong> 3 pacchetti<br>
-                    <strong>Secondo posto:</strong> 2 pacchetti<br>
-                    <strong>Terzo posto:</strong> 1 pacchetto</p>
+        <section class="section" id="programma">
+            <h2><span class="emoji">📅</span> PROGRAMMA GIORNO PER GIORNO</h2>
+            <div class="schedule">
+                <div class="day friday">
+                    <h3><span class="emoji">🔴</span> Venerdì 15 Agosto – Welcome & Streaming Day 1</h3>
+                    <ul class="timeline">
+                        <li><strong>🕢 19:30</strong> – Apertura casa, tuffi in piscina, sistemazione</li>
+                        <li><strong>🍽️ 20:30</strong> – Cena informale con avanzi / cibo portato dagli ospiti</li>
+                        <li><strong>📺</strong> Streaming Day 1 già in corso (inizia alle 18:00)</li>
+                        <li><strong>🎮</strong> Giochi liberi: retro console, shiny hunting, chiacchiere</li>
+                        <li><strong>🛏️</strong> Assegnazione posti letto</li>
+                        <li><strong>🌙</strong> Nottata libera fino all'alba</li>
+                    </ul>
                 </div>
-                <div class="prize-item">
-                    <h4><span class="emoji">✨</span> Bonus</h4>
-                    <p>• Riconoscimenti anche per vincitori shiny hunting</p>
+
+                <div class="day saturday">
+                    <h3><span class="emoji">🟡</span> Sabato 16 Agosto – Tornei + BBQ + Streaming Day 2</h3>
+                    <ul class="timeline">
+                        <li><strong>🌞 12:00</strong> – Risveglio lento, colazione e piscina</li>
+                        <li><strong>🎮 13:00</strong> – Torneo VGC Reg H (Swiss Day 1)<br><strong>🏅 Premi:</strong> Pacchetti Pokémon Black Bolt e White Flare!</li>
+                        <li><strong>🃏 15:30</strong> – Torneo Yu-Gi-Oh! formato GOAT<br><strong>🏅 Premi Pokémon</strong> anche per il GOAT: pacchetti espansione per i primi classificati!</li>
+                        <li><strong>🍽️ 17:30</strong> – Merenda / pausa pranzo condivisa</li>
+                        <li><strong>📺 18:00</strong> – Streaming Worlds Day 2 (watch party)</li>
+                        <li><strong>🍖 Dalle 19:00</strong> – BBQ serale in giardino a bordo piscina</li>
+                        <li><strong>🎮</strong> Giochi liberi, shiny hunting, relax</li>
+                        <li><strong>🌙</strong> Nottata lunga fino alle 5:00</li>
+                    </ul>
+                </div>
+
+                <div class="day sunday">
+                    <h3><span class="emoji">🟢</span> Domenica 17 Agosto – Finali VGC + Finali Worlds</h3>
+                    <ul class="timeline">
+                        <li><strong>🌞 12:00</strong> – Colazione e relax in piscina</li>
+                        <li><strong>🎮 13:30</strong> – Torneo VGC Reg H – Day 2 & Top Cut<br><strong>🏆 In palio:</strong> pacchetti Black Bolt e White Flare</li>
+                        <li><strong>🍱 14:30</strong> – Pranzo condiviso (sushi delivery o cucinato insieme)</li>
+                        <li><strong>📺 18:00</strong> – Streaming delle Finali Mondiali Pokémon 2025</li>
+                        <li><strong>🍕 21:00</strong> – Cena: pizza delivery o cibo avanzato</li>
+                        <li><strong>🎮</strong> Giochi liberi, ultimi tuffi e relax</li>
+                        <li><strong>🌙</strong> Ultima notte insieme</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <h2><span class="emoji">🧳</span> COSA PORTARE</h2>
-        <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
-            <p style="font-size: 1.1rem; line-height: 1.8;">
-                • Costume e asciugamano<br>
-                • Console (Switch, 3DS, ecc.) per shiny hunting e tornei VGC<br>
-                • Mazzo Yu-Gi-Oh! formato GOAT<br>
-                • Controller per retro console (opzionale)<br>
-                • Consigliato Materassino / sacco a pelo se resti a dormire<br>
-                • Spirito chill ma non troppo
-            </p>
-        </div>
-    </section>
+        <section class="section">
+            <div class="prizes">
+                <h3><span class="emoji">🎁</span> PREMI IN PALIO</h3>
+                <p><strong>🏆 I tornei VGC Reg H e Yu-Gi-Oh! GOAT assegneranno:</strong></p>
+                
+                <div class="prize-grid">
+                    <div class="prize-item">
+                        <h4>• Pacchetti Pokémon Black Bolt e White Flare</h4>
+                        <p><strong>Primo posto:</strong> 3 pacchetti<br>
+                        <strong>Secondo posto:</strong> 2 pacchetti<br>
+                        <strong>Terzo posto:</strong> 1 pacchetto</p>
+                    </div>
+                    <div class="prize-item">
+                        <h4><span class="emoji">✨</span> Bonus</h4>
+                        <p>• Riconoscimenti anche per vincitori shiny hunting</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section class="section">
-        <div class="highlight-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-            <h2><span class="emoji">📋</span> ISCRIZIONE</h2>
-            <p style="font-size: 1.1rem; margin: 1.5rem 0; line-height: 1.6;">A breve riceverai un modulo Google per indicare:</p>
-            <ul style="text-align: left; max-width: 400px; margin: 0 auto; line-height: 1.6;">
-                <li>I giorni in cui sarai presente</li>
-                <li>A quali tornei ti iscrivi</li>
-                <li>Se ti fermi a dormire</li>
-                <li>Eventuali esigenze alimentari</li>
-            </ul>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScofoXOCMitJHLGADcVLmhyz5K9mC5G5lyITQ3otXP0ZydX-w/viewform?usp=header" target="_blank" class="cta-button" style="margin-top: 2rem;">Compila il Modulo</a>
-        </div>
-    </section>
+        <section class="section">
+            <h2><span class="emoji">🧳</span> COSA PORTARE</h2>
+            <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    • Costume e asciugamano<br>
+                    • Console (Switch, 3DS, ecc.) per shiny hunting e tornei VGC<br>
+                    • Mazzo Yu-Gi-Oh! formato GOAT<br>
+                    • Controller per retro console (opzionale)<br>
+                    • Consigliato Materassino / sacco a pelo se resti a dormire<br>
+                    • Spirito chill ma non troppo
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="highlight-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2><span class="emoji">📋</span> ISCRIZIONE</h2>
+                <p style="font-size: 1.1rem; margin: 1.5rem 0; line-height: 1.6;">A breve riceverai un modulo Google per indicare:</p>
+                <ul style="text-align: left; max-width: 400px; margin: 0 auto; line-height: 1.6;">
+                    <li>I giorni in cui sarai presente</li>
+                    <li>A quali tornei ti iscrivi</li>
+                    <li>Se ti fermi a dormire</li>
+                    <li>Eventuali esigenze alimentari</li>
+                </ul>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScofoXOCMitJHLGADcVLmhyz5K9mC5G5lyITQ3otXP0ZydX-w/viewform?usp=header" target="_blank" class="cta-button" style="margin-top: 2rem;">Compila il Modulo</a>
+            </div>
+        </section>
+    </div>
 
     <footer class="footer">
         <p><span class="emoji">⚡</span> <strong>Pokémon Worlds 2025 Watch Party & Poolfest</strong> <span class="emoji">⚡</span></p>
