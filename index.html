@@ -16,6 +16,7 @@
             background-color: #3b3f6f; /* Sfondo scuro per un effetto più pulito */
             color: #fff;
             overflow-x: hidden;
+            font-size: 16px; /* Dimensione di base per il testo */
         }
 
         .hero {
@@ -97,7 +98,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
-            background-color: #3b3f6f; /* Rende la sezione opaca */
+            background-color: #3b3f6f;
         }
 
         .section h2 {
@@ -228,16 +229,51 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
             
+            .hero-details {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
             .section {
                 padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .highlight-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .day h3 {
+                font-size: 1.5rem;
+            }
+
+            .timeline li {
+                font-size: 0.9rem;
+            }
+
+            .prizes h3 {
+                font-size: 1.6rem;
             }
             
             .highlights {
                 grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 30px;
             }
         }
 
