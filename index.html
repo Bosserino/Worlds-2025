@@ -27,6 +27,7 @@
             position: relative;
             background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
             background-size: 400% 400%;
+            background-attachment: fixed; /* Parallasse corretto */
             animation: gradientShift 8s ease infinite;
         }
 
@@ -66,8 +67,9 @@
 
         .hero-details {
             font-size: 1.2rem;
-            margin: 1.5rem 0;
+            margin: 1.5rem auto;
             line-height: 1.6;
+            max-width: 600px;
         }
 
         .cta-button {
@@ -93,6 +95,8 @@
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative; /* Assicura che le sezioni siano sopra lo sfondo fisso */
+            z-index: 1;
         }
 
         .section h2 {
@@ -100,6 +104,7 @@
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
+            font-weight: normal;
         }
 
         .section h2::after {
@@ -164,6 +169,7 @@
         .day h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
+            font-weight: normal;
         }
 
         .timeline {
@@ -175,6 +181,7 @@
             margin: 0.8rem 0;
             padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
         }
 
         .timeline li:last-child {
@@ -192,6 +199,7 @@
         .prizes h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
+            font-weight: normal;
         }
 
         .prize-grid {
@@ -371,103 +379,4 @@
         <div class="highlight-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
             <p style="font-size: 1.1rem; line-height: 1.8;">
                 • Costume e asciugamano<br>
-                • Console (Switch, 3DS, ecc.) per shiny hunting e tornei VGC<br>
-                • Mazzo Yu-Gi-Oh! formato GOAT<br>
-                • Controller per retro console (opzionale)<br>
-                • Consigliato Materassino / sacco a pelo se resti a dormire<br>
-                • Spirito chill ma non troppo
-            </p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="highlight-card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-            <h2><span class="emoji">📋</span> ISCRIZIONE</h2>
-            <p style="font-size: 1.1rem; margin: 1.5rem 0;">A breve riceverai un modulo Google per indicare:</p>
-            <ul style="text-align: left; max-width: 400px; margin: 0 auto; line-height: 1.6;">
-                <li>I giorni in cui sarai presente</li>
-                <li>A quali tornei ti iscrivi</li>
-                <li>Se ti fermi a dormire</li>
-                <li>Eventuali esigenze alimentari</li>
-            </ul>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScofoXOCMitJHLGADcVLmhyz5K9mC5G5lyITQ3otXP0ZydX-w/viewform?usp=header" target="_blank" class="cta-button" style="margin-top: 2rem;">Compila il Modulo</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p><span class="emoji">⚡</span> <strong>Pokémon Worlds 2025 Watch Party & Poolfest</strong> <span class="emoji">⚡</span></p>
-        <p>15-17 Agosto 2025 | Italia | Un weekend indimenticabile tra amici trainer!</p>
-    </footer>
-
-    <script>
-        // Crea elementi fluttuanti animati
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
-            
-            for (let i = 0; i < 15; i++) {
-                const pokeball = document.createElement('div');
-                pokeball.className = 'pokeball';
-                pokeball.style.left = Math.random() * 100 + '%';
-                pokeball.style.animationDelay = Math.random() * 10 + 's';
-                pokeball.style.animationDuration = (8 + Math.random() * 4) + 's';
-                pokeball.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]} 50%, #fff 50%)`;
-                container.appendChild(pokeball);
-            }
-        }
-
-        // Smooth scrolling per i link
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Effetto parallax leggero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        });
-
-        // Inizializza animazioni
-        window.addEventListener('load', () => {
-            createFloatingElements();
-        });
-
-        // Animazione di entrata per le card
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Osserva tutti gli elementi che devono animarsi
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll('.highlight-card, .day, .prizes');
-            animateElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
-</body>
-</html>
+                • Console (Switch, 3DS, ecc.) per shiny hunting e
