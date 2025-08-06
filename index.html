@@ -45,7 +45,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            z-index: 1; /* Assicura che l'hero sia sopra lo sfondo */
+            z-index: 1;
         }
 
         .hero-content {
@@ -104,7 +104,7 @@
 
         .content-wrapper {
             position: relative;
-            z-index: 1; /* Assicura che il contenuto sia sopra lo sfondo */
+            z-index: 1;
         }
         
         .section {
@@ -278,8 +278,11 @@
             height: 30px;
             border-radius: 50%;
             background: linear-gradient(45deg, #ff6b6b 50%, #fff 50%);
-            animation: float-random 10s infinite linear;
             opacity: 0.3;
+        }
+        
+        .pokeball.animated {
+            animation: float-random 10s infinite linear;
         }
 
         @keyframes float-random {
@@ -430,18 +433,22 @@
     </footer>
 
     <script>
-        // Crea elementi fluttuanti animati
         function createFloatingElements() {
             const container = document.getElementById('floatingElements');
             const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
             
             for (let i = 0; i < 15; i++) {
                 const pokeball = document.createElement('div');
+                const animationDuration = 8 + Math.random() * 4;
+                const animationDelay = Math.random() * 10;
+
                 pokeball.className = 'pokeball';
                 pokeball.style.left = Math.random() * 100 + '%';
-                pokeball.style.animationDelay = Math.random() * 10 + 's';
-                pokeball.style.animationDuration = (8 + Math.random() * 4) + 's';
+                pokeball.style.transform = 'translateY(100vh)'; // Imposta la posizione iniziale
+                pokeball.style.animation = `float-random ${animationDuration}s infinite linear`;
+                pokeball.style.animationDelay = `${animationDelay}s`;
                 pokeball.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]} 50%, #fff 50%)`;
+                
                 container.appendChild(pokeball);
             }
         }
